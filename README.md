@@ -1,0 +1,3 @@
+## Tailored base R docker image for qmongr
+
+Speed up development processes for qmongr...
