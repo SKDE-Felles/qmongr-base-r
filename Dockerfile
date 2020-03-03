@@ -18,6 +18,6 @@ RUN apt-get update && apt-get install -y \
 RUN R -e "install.packages(c('remotes'), repos='https://cloud.r-project.org/')"
 
 # install package dependencies
-RUN R -e "install.packages(c('magrittr','shiny', 'dplyr', 'tidyr', 'rlang', 'yaml'))"
+RUN R -e "install.packages(c('magrittr','shiny', 'dplyr', 'tidyr', 'rlang', 'yaml', 'lubridate'))"
 
 CMD ["R"]
