@@ -20,4 +20,6 @@ RUN R -e "install.packages(c('remotes'), repos='https://cloud.r-project.org/')"
 # install package dependencies
 RUN R -e "install.packages(c('magrittr','shiny', 'shinyalert', 'dplyr', 'tidyr', 'rlang', 'yaml', 'lubridate'))"
 
+RUN R -e "remotes::install_github('rstudio/shiny')"
+
 CMD ["R"]
