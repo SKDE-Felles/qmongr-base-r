@@ -21,4 +21,7 @@ RUN R -e "install.packages(c('remotes'), repos='https://cloud.r-project.org/')"
 # install package dependencies
 RUN R -e "install.packages(c('magrittr','shiny', 'shinyalert', 'dplyr', 'stringr', 'rlang', 'yaml', 'jsonlite', 'tibble'))"
 
+# install imongr and its dependencies
+RUN R -e "remotes::install_github('mong/imongr@*release')"
+
 CMD ["R"]
