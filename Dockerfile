@@ -1,9 +1,10 @@
-FROM rocker/r-base
+FROM rocker/r-base:4.0.3
 
 LABEL maintainer "Are Edvardsen <are.edvardsen@helse-nord.no>"
 
 # system libraries of general use
-RUN apt-get update && apt-get install -y \
+# hadolint ignore=DL3008
+RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     pandoc \
     pandoc-citeproc \
@@ -18,10 +19,15 @@ RUN apt-get update && apt-get install -y \
 # basic R functionality
 RUN R -e "install.packages(c('remotes'), repos='https://cloud.r-project.org/')"
 
-# install package dependencies
-RUN R -e "install.packages(c('magrittr','shiny', 'shinyalert', 'dplyr', 'stringr', 'rlang', 'yaml', 'jsonlite', 'tibble'))"
-
 # install imongr and its dependencies
 RUN R -e "remotes::install_github('mong/imongr@*release')"
+
+# install package dependencies
+RUN R -e "install.packages(c('magrittr',\
+                             'shiny',\
+                             'dplyr',\
+                             'rlang',\
+                             'yaml',\
+                             'jsonlite'))"
 
 CMD ["R"]
